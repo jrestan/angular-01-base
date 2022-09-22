@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Personaje } from '../interfaces/dbz.interfaces';
+import { DbzService } from '../services/dbz.service';
 
 @Component({
   selector: 'app-agregar',
@@ -15,7 +16,9 @@ export class AgregarComponent implements OnInit {
     poder: 0
   }
 
-  @Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
+  //con servicio ya no se usa esto..
+  //con esto se emitia eventos a la clase padre
+  //@Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
 
   agregar(){
     if(this.nuevo.nombre.trim().length===0){ return; }
@@ -23,7 +26,11 @@ export class AgregarComponent implements OnInit {
     
     //this.personajes.push(this.nuevo);
     
-    this.onNuevoPersonaje.emit(this.nuevo);
+    //con servicio ya no se usa esto..
+    //con esto se emitia eventos a la clase padre
+    //this.onNuevoPersonaje.emit(this.nuevo);
+
+    this.dbzService.agregarPersonaje(this.nuevo);
     
     this.nuevo = { //Con esto se purga porque si no se hace esto aun luego de hacer el push this.nuevo sigue amarrado con el objeto anterior
       nombre: '',  //al hacer esto es como estar creando un nuevo objeto para "this.nuevo"
@@ -31,7 +38,8 @@ export class AgregarComponent implements OnInit {
     };
   }
 
-  constructor() { }
+  constructor(private dbzService: DbzService) { }
+
   ngOnInit(): void { }
 
 }

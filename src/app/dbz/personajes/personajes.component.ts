@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Personaje } from '../interfaces/dbz.interfaces';
+import { DbzService } from '../services/dbz.service';
 
 @Component({
   selector: 'app-personajes',
@@ -16,9 +17,15 @@ export class PersonajesComponent implements OnInit {
   //@Input() personajes: Personaje[] = [];
   
   //con la segunda asume que es _person, entonces en main-page.component.html la llamada a esta clase <app-personajes> se indica [_person] en el parametro
-  @Input('_person') personajes: Personaje[] = [];
+  //@Input('_person') personajes: Personaje[] = [];
 
-  constructor() { }
+  get personajes(): Personaje[] {
+    return this.dbzService.personajes;
+  }
+
+  constructor(private dbzService: DbzService) { 
+
+  }
   ngOnInit(): void { }
 
 }
