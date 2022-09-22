@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Personaje } from '../interfaces/dbz.interfaces';
 
-interface Personaje{
+/*interface Personaje{
   nombre: string,
   poder: number
-}
-
+}*/
 
 @Component({
   selector: 'app-main-page',
@@ -36,7 +36,7 @@ export class MainPageComponent implements OnInit {
     }
   ]
 
-
+  /*
   agregar(){
     if(this.nuevo.nombre.trim().length===0){ return; }
     console.log(this.nuevo);
@@ -46,6 +46,10 @@ export class MainPageComponent implements OnInit {
       nombre: '',  //al hacer esto es como estar creando un nuevo objeto para "this.nuevo"
       poder: 0
     };
+  }*/
+
+  onNuevoPersonaje(argumento: Personaje){
+    this.personajes.push(argumento);
   }
 
   cambiarNombre(event: any){
